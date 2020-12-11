@@ -6,7 +6,7 @@ mkdir ~/pki/certs
 mkdir ~/pki/private
 chmod -R 700 ~/pki
 
-IP="35.157.147.9"
+IP=$MYIP
 ipsec pki --gen --type rsa --size 4096 --outform pem > ~/pki/private/ca-key.pem
 ipsec pki --self --ca --lifetime 3650 --in ~/pki/private/ca-key.pem \
  --type rsa --dn "CN=VPN root CA" --outform pem > ~/pki/cacerts/ca-cert.pem

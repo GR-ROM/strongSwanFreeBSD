@@ -26,6 +26,7 @@ cp ~/pki/private/* /usr/local/etc/swanctl/private
 echo "connections {
    ikev2-cert {
       version = 2
+      remote_addrs = %any
       send_cert = always
       encap = yes
       pools = pool1
@@ -33,7 +34,7 @@ echo "connections {
       proposals = aes256-aes128-sha256-sha1-modp3072-modp2048-modp1024
       local {
          certs = server-cert.pem
-         id = vpnserver
+         id = $IP
       }
       remote {
          auth = eap-mschapv2
@@ -41,7 +42,7 @@ echo "connections {
       }
       children {
          net {
-            local_ts  = 0.0.0.0
+            local_ts  = 0.0.0.0/0
             esp_proposals = aes256-aes128-sha256-sha1-modp3072-modp2048-modp1024
          }
       }
